@@ -1,0 +1,211 @@
+{% extends 'layout.html' %} {% block body %}
+<!-- FILTER -->
+<br />
+<div class="form">
+  <form action="" method="get">
+    <label for="">Action</label>
+    <input type="checkbox" name="genre" value="Action" />
+    <label for="">Comedy</label>
+    <input type="checkbox" name="genre" value="Comedy" />
+
+    <button type="submit">Filter</button>
+  </form>
+</div>
+
+<br /><br />
+
+<!-- new table -->
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">
+        ID {%if request.args.get('type')=="id" and request.args.get('order') ==
+        "asc" %}
+
+        <a href="/movie_list?type=id&order=desc">DESC</a>
+
+        {%else %}
+
+        <a href="/movie_list?type=id&order=asc">ASC</a>
+
+        {%endif%}
+      </th>
+      <th scope="col">
+        Movie Name {%if request.args.get('type')=="movie_name" and
+        request.args.get('order') == "asc" %}
+
+        <a href="/movie_list?search=&type=movie_name&order=desc">DESC</a>
+
+        {%else %}
+
+        <a href="/movie_list?type=movie_name&order=asc">ASC</a>
+
+        {%endif%}
+      </th>
+      <th scope="col">Director Name</th>
+      <th scope="col">Genres</th>
+      <th scope="col">Release Date</th>
+      <th scope="col">Running Time</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+
+  {% for item in data %}
+  <tr>
+    <th scope="row">{{item[0]}}</th>
+    <td>{{item[1]}}</td>
+    <td>{{item[2]}}</td>
+    <td>{{item[3]}}</td>
+    <td>{{item[4]}}</td>
+    <td>{{item[5]}}</td>
+    <td>
+      <form action="/view_movie/{{item[0]}}" method="get">
+        <button type="submit" class="btn btn-info mb-2">View</button>
+      </form>
+    </td>
+    <td>
+      <form action="/edit_movie/{{item[0]}}" method="get">
+        <button type="submit" class="btn btn-primary mb-2">Edit</button>
+      </form>
+    </td>
+    <td>
+      <form action="/delete_movie/{{item[0]}}" method="post">
+        <button type="submit" class="btn btn-danger mb-2">Delete</button>
+      </form>
+    </td>
+    <!-- 2ND -->
+    <!-- <th scope="col mx-auto">
+            <form action="/view_movie/{{item[0]}}" method="get">
+              <button type="submit" class="btn btn-info mb-2">View</button>
+            </form>
+            <form action="/edit_movie/{{item[0]}}" method="get">
+              <button type="submit" class="btn btn-primary mb-2">Edit</button>
+            </form>
+            <form action="/delete_movie/{{item[0]}}" method="post">
+              <button type="submit" class="btn btn-danger mb-2">Delete</button>
+            </form>
+          </th> -->
+  </tr>
+
+  {% endfor %}
+</table>
+
+<br />
+<!-- dnf -->
+
+<div class="mx-auto" style="width: 200px">
+  <!-- Main -->
+
+  {%if request.args.get('type') and request.args.get('order') and
+  request.args.get('search') %}
+
+  <!-- Main -->
+
+  <!-- Prev -->
+  {% if curr_page== 1 %}
+  <!-- <a href="">Prev</a> -->
+  {% else %}
+  <a
+    href="/movie_list?search=request.args.get('search')&page_no={{curr_page - 1}}&type={{request.args.get('type')}}&order={{request.args.get('order')}}"
+    >Prev
+  </a>
+  {% endif %}
+  <!-- Prev -->
+
+  <!-- 1 -->
+  {% if curr_page== 1 %}
+  <a
+    href="/movie_list?search=request.args.get('search')&page_no=1&type={{request.args.get('type')}}&order={{request.args.get('order')}}"
+  >
+    <b>1</b>
+  </a>
+  {% else %}
+  <a
+    href="/movie_list?search=request.args.get('search')&page_no=1&type={{request.args.get('type')}}&order={{request.args.get('order')}}"
+    >1
+  </a>
+  {% endif %}
+  <!-- 1 -->
+
+  <!-- 2 -->
+  {% if curr_page== 2 %}
+  <a
+    href="/movie_list?search=request.args.get('search')&page_no=2&type={{request.args.get('type')}}&order={{request.args.get('order')}}"
+  >
+    <b>2</b>
+  </a>
+  {% else %}
+  <a
+    href="/movie_list?search=request.args.get('search')&page_no=2&type={{request.args.get('type')}}&order={{request.args.get('order')}}"
+  >
+    2
+  </a>
+  {% endif %}
+  <!-- 2 -->
+
+  <!-- 3 -->
+  {% if curr_page== 3 %}
+  <a
+    href="/movie_list?search=request.args.get('search')&page_no=3&type={{request.args.get('type')}}&order={{request.args.get('order')}}"
+  >
+    <b>3</b>
+  </a>
+  {% else %}
+  <a
+    href="/movie_list?search=request.args.get('search')&page_no=3&type={{request.args.get('type')}}&order={{request.args.get('order')}}"
+  >
+    3
+  </a>
+  {% endif %}
+  <!-- 3 -->
+
+  <!-- Next -->
+  {% if curr_page == 3 %}
+  <!-- <a href="">Next</a> -->
+  {% else %}
+  <a
+    href="/movie_list?search=request.args.get('search')&page_no={{curr_page + 1}}&type={{request.args.get('type')}}&order={{request.args.get('order')}}"
+    >Next</a
+  >
+  {% endif %}
+
+  <!-- Next -->
+
+  <!-- Main -->
+
+  {% else %}
+
+  <!-- Main -->
+
+  {% if curr_page == 1 %}
+  <!-- <a href="">Prev</a> -->
+  {% else %}
+  <a href="/movie_list?page_no={{curr_page - 1}}">Prev</a>
+  {% endif %} {% if curr_page == 1 %}
+  <a href="/movie_list">
+    <b>1</b>
+  </a>
+  {% else %}
+  <a href="/movie_list"> 1 </a>
+  {% endif %} {% if curr_page == 2 %}
+  <a href="/movie_list?page_no=2">
+    <b>2</b>
+  </a>
+  {% else %}
+  <a href="/movie_list?page_no=2"> 2 </a>
+  {% endif %} {% if curr_page == 3 %}
+  <a href="/movie_list?page_no=3">
+    <b>3</b>
+  </a>
+  {% else %}
+  <a href="/movie_list?page_no=3"> 3 </a>
+  {% endif %} {% if curr_page == 3 %}
+  <!-- <a href="">Next</a> -->
+  {% else %}
+  <a href="/movie_list?page_no={{curr_page + 1}}">Next</a>
+  {% endif %} {% endif %}
+  <!-- Main -->
+</div>
+<!-- dnf -->
+
+{% endblock %}

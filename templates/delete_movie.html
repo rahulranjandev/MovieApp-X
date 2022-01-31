@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Movie Name</th>
+            <th>Genres</th>
+            <th>Release Date</th>
+            <th>Running Time</th>
+            
+        </tr>
+        {% for item in data %}
+        
+        <tr>
+            <td>
+                {{item[0]}}
+            </td>
+            <td>
+                {{item[1]}}
+            </td>
+            <td>
+                {{item[2]}}
+            </td>
+            <td>
+                {{item[3]}}
+            </td>
+            <td>
+                {{item[4]}}
+            </td>
+        </tr>
+        
+        {% endfor %}
+    </table>
+    <button type="submit">Remove</button>
+{% endblock %}

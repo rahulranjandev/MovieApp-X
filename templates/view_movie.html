@@ -1,0 +1,34 @@
+{% extends 'layout.html' %} {% block body %}
+<div class="row mb-2">
+  <div class="col">
+    <table class="table">
+      <thead>
+        <tr>
+          <td class="table-active">ID</td>
+          <td class="table-active">{{movie[0]}}</td>
+        </tr>
+        <tr>
+          <td class="table-primary">Movie_name</td>
+          <td class="table-primary">{{movie[1]}}</td>
+        </tr>
+        <tr>
+          <td class="table-info">Director Name</td>
+          <td class="table-info">{{movie[2]}}</td>
+        </tr>
+        <tr>
+          <td class="table-success">Genres</td>
+          <td class="table-success">{{movie[3]}}</td>
+        </tr>
+        <tr>
+          <td class="table-secondary">Release Date</td>
+          <td class="table-secondary">{{movie[4]}}</td>
+        </tr>
+        <tr>
+          <td class="table-warning">Running Time</td>
+          <td class="table-warning">{{movie[5]}}</td>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>
+{% endblock %}
