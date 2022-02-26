@@ -7,9 +7,9 @@ from mysql.connector.pooling import PooledMySQLConnection
 app = Flask(__name__)
 
 mydb = mysql.connector.connect(
-    host="40.117.248.43",
+    host="20.121.202.30",
     user="root",
-    password="Pass@123r",
+    password="Passwd@123r",
     port=3306,
     database="movieapp"
 )
