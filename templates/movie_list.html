@@ -8,7 +8,7 @@
     <label for="">Comedy</label>
     <input type="checkbox" name="genre" value="Comedy" />
 
-    <button type="submit">Filter</button>
+    <button type="submit" class="btn btn-secondary">Filter</button>
   </form>
 </div>
 
@@ -46,7 +46,7 @@
       <th scope="col">Genres</th>
       <th scope="col">Release Date</th>
       <th scope="col">Running Time</th>
-      <th scope="col">Action</th>
+      <th scope="col" style="text-align: center">Action</th>
     </tr>
   </thead>
 
@@ -58,7 +58,7 @@
     <td>{{item[3]}}</td>
     <td>{{item[4]}}</td>
     <td>{{item[5]}}</td>
-    <td>
+    <!-- <td>
       <form action="/view_movie/{{item[0]}}" method="get">
         <button type="submit" class="btn btn-info mb-2">View</button>
       </form>
@@ -72,48 +72,87 @@
       <form action="/delete_movie/{{item[0]}}" method="post">
         <button type="submit" class="btn btn-danger mb-2">Delete</button>
       </form>
-    </td>
+    </td> -->
     <!-- 2ND -->
-    <!-- <th scope="col mx-auto">
-            <form action="/view_movie/{{item[0]}}" method="get">
-              <button type="submit" class="btn btn-info mb-2">View</button>
-            </form>
-            <form action="/edit_movie/{{item[0]}}" method="get">
-              <button type="submit" class="btn btn-primary mb-2">Edit</button>
-            </form>
-            <form action="/delete_movie/{{item[0]}}" method="post">
-              <button type="submit" class="btn btn-danger mb-2">Delete</button>
-            </form>
-          </th> -->
-  </tr>
+    <!-- <th scope="col">
+      <form
+        action="/view_movie/{{item[0]}}"
+        method="get"
+        style="text-align: left"
+      >
+        <button type="submit" class="btn btn-info mb-2">View</button>
+      </form>
+      <form
+        action="/edit_movie/{{item[0]}}"
+        method="get"
+        style="text-align: center"
+      >
+        <button type="submit" class="btn btn-primary mb-2">Edit</button>
+      </form>
+      <form
+        action="/delete_movie/{{item[0]}}"
+        method="post"
+        style="text-align: right"
+      >
+        <button type="submit" class="btn btn-danger mb-2">Delete</button>
+      </form>
+    </th> -->
 
+    <!-- new button -->
+    <td style="text-align: center">
+      <a
+        href="/view_movie/{{item[0]}}"
+        class="btn btn-outline-info"
+        role="button"
+        aria-pressed="true"
+        >View
+      </a>
+      <a
+        href="/edit_movie/{{item[0]}}"
+        class="btn btn-outline-warning"
+        role="button"
+        aria-pressed="true"
+        >Edit
+      </a>
+      <a
+        href="/delete_movie/{{item[0]}}"
+        class="btn btn-outline-danger"
+        role="button"
+        aria-pressed="true"
+      >
+        Delete
+      </a>
+    </td>
+    <!-- new button -->
+  </tr>
   {% endfor %}
 </table>
 
 <br />
+
 <!-- dnf -->
 
-<div class="mx-auto" style="width: 200px">
-  <!-- Main -->
+<!-- <div class="mx-auto" style="width: 200px"> -->
+<!-- Main -->
 
-  {%if request.args.get('type') and request.args.get('order') and
-  request.args.get('search') %}
+{%if request.args.get('type') and request.args.get('order') and
+request.args.get('search') %}
 
-  <!-- Main -->
+<!-- Main -->
 
-  <!-- Prev -->
-  {% if curr_page== 1 %}
-  <!-- <a href="">Prev</a> -->
-  {% else %}
+<!-- Prev -->
+<!-- {% if curr_page== 1 %} -->
+<!-- <a href="">Prev</a> -->
+<!-- {% else %}
   <a
     href="/movie_list?search=request.args.get('search')&page_no={{curr_page - 1}}&type={{request.args.get('type')}}&order={{request.args.get('order')}}"
     >Prev
   </a>
-  {% endif %}
-  <!-- Prev -->
+  {% endif %} -->
+<!-- Prev -->
 
-  <!-- 1 -->
-  {% if curr_page== 1 %}
+<!-- 1 -->
+<!-- {% if curr_page== 1 %}
   <a
     href="/movie_list?search=request.args.get('search')&page_no=1&type={{request.args.get('type')}}&order={{request.args.get('order')}}"
   >
@@ -124,11 +163,11 @@
     href="/movie_list?search=request.args.get('search')&page_no=1&type={{request.args.get('type')}}&order={{request.args.get('order')}}"
     >1
   </a>
-  {% endif %}
-  <!-- 1 -->
+  {% endif %} -->
+<!-- 1 -->
 
-  <!-- 2 -->
-  {% if curr_page== 2 %}
+<!-- 2 -->
+<!-- {% if curr_page== 2 %}
   <a
     href="/movie_list?search=request.args.get('search')&page_no=2&type={{request.args.get('type')}}&order={{request.args.get('order')}}"
   >
@@ -140,11 +179,11 @@
   >
     2
   </a>
-  {% endif %}
-  <!-- 2 -->
+  {% endif %} -->
+<!-- 2 -->
 
-  <!-- 3 -->
-  {% if curr_page== 3 %}
+<!-- 3 -->
+<!-- {% if curr_page== 3 %}
   <a
     href="/movie_list?search=request.args.get('search')&page_no=3&type={{request.args.get('type')}}&order={{request.args.get('order')}}"
   >
@@ -156,30 +195,100 @@
   >
     3
   </a>
-  {% endif %}
-  <!-- 3 -->
+  {% endif %} -->
+<!-- 3 -->
 
-  <!-- Next -->
-  {% if curr_page == 3 %}
-  <!-- <a href="">Next</a> -->
-  {% else %}
+<!-- Next -->
+<!-- {% if curr_page == 3 %} -->
+<!-- <a href="">Next</a> -->
+<!-- {% else %}
   <a
     href="/movie_list?search=request.args.get('search')&page_no={{curr_page + 1}}&type={{request.args.get('type')}}&order={{request.args.get('order')}}"
     >Next</a
   >
-  {% endif %}
+  {% endif %} -->
 
-  <!-- Next -->
+<!-- Next -->
+<!-- new pagination for search -->
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+    {% if curr_page == 1 %}
 
-  <!-- Main -->
+    <li class="page-item disabled">
+      <a class="page-link" href="#">Previous</a>
+    </li>
+    {% else %}
+    <li class="page-item">
+      <a
+        class="page-link"
+        href="/movie_list?search=request.args.get('search')&page_no={{curr_page - 1}}&type={{request.args.get('type')}}&order={{request.args.get('order')}}"
+      >
+        Previous
+      </a>
+    </li>
+    {% endif %} {% if curr_page == 1 %}
 
-  {% else %}
+    <li class="page-item disabled"><a class="page-link" href="#">1</a></li>
+    {% else %}
+    <li class="page-item">
+      <a
+        class="page-link"
+        href="/movie_list?search=request.args.get('search')&page_no=1&type={{request.args.get('type')}}&order={{request.args.get('order')}}"
+      >
+        1
+      </a>
+    </li>
+    {% endif %} {% if curr_page == 2 %}
 
-  <!-- Main -->
+    <li class="page-item disabled"><a class="page-link" href="#">2</a></li>
+    {% else %}
+    <li class="page-item">
+      <a
+        class="page-link"
+        href="/movie_list?search=request.args.get('search')&page_no=2&type={{request.args.get('type')}}&order={{request.args.get('order')}}"
+      >
+        2
+      </a>
+    </li>
 
-  {% if curr_page == 1 %}
-  <!-- <a href="">Prev</a> -->
-  {% else %}
+    {% endif %} {% if curr_page == 3 %}
+    <li class="page-item disabled"><a class="page-link" href="#">3</a></li>
+    {% else %}
+    <li class="page-item">
+      <a
+        class="page-link"
+        href="/movie_list?search=request.args.get('search')&page_no=3&type={{request.args.get('type')}}&order={{request.args.get('order')}}"
+      >
+        3
+      </a>
+    </li>
+    {% endif %} {% if curr_page == 3 %}
+
+    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+    {% else %}
+    <li class="page-item">
+      <a
+        class="page-link"
+        href="/movie_list?search=request.args.get('search')&page_no={{curr_page + 1}}&type={{request.args.get('type')}}&order={{request.args.get('order')}}"
+      >
+        Next
+      </a>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+
+<!-- new pagination for search -->
+
+<!-- Main -->
+
+{% else %}
+
+<!-- Main -->
+
+<!-- {% if curr_page == 1 %} -->
+<!-- <a href="">Prev</a> -->
+<!-- {% else %}
   <a href="/movie_list?page_no={{curr_page - 1}}">Prev</a>
   {% endif %} {% if curr_page == 1 %}
   <a href="/movie_list">
@@ -199,13 +308,58 @@
   </a>
   {% else %}
   <a href="/movie_list?page_no=3"> 3 </a>
-  {% endif %} {% if curr_page == 3 %}
-  <!-- <a href="">Next</a> -->
-  {% else %}
+  {% endif %} {% if curr_page == 3 %} -->
+<!-- <a href="">Next</a> -->
+<!-- {% else %}
   <a href="/movie_list?page_no={{curr_page + 1}}">Next</a>
-  {% endif %} {% endif %}
-  <!-- Main -->
-</div>
+  {% endif %} {% endif %} -->
+<!-- Main -->
+
+<!-- new pagination -->
+<nav aria-label="Page navigation">
+  <ul class="pagination justify-content-center">
+    {% if curr_page == 1 %}
+    <li class="page-item disabled">
+      <a class="page-link" href="#">Previous</a>
+    </li>
+    {% else %}
+    <li class="page-item">
+      <a class="page-link" href="/movie_list?page_no={{curr_page - 1}}">
+        Previous
+      </a>
+    </li>
+    {% endif %} {% if curr_page == 1 %}
+    <li class="page-item disabled"><a class="page-link" href="#">1</a></li>
+    {% else %}
+    <li class="page-item">
+      <a class="page-link" href="/movie_list?page_no=1">1</a>
+    </li>
+    {% endif %} {% if curr_page == 2 %}
+    <li class="page-item disabled"><a class="page-link" href="#">2</a></li>
+    {% else %}
+    <li class="page-item">
+      <a class="page-link" href="/movie_list?page_no=2">2</a>
+    </li>
+    {% endif %} {% if curr_page == 3 %}
+    <li class="page-item disabled"><a class="page-link" href="#">3</a></li>
+    {% else %}
+    <li class="page-item">
+      <a class="page-link" href="/movie_list?page_no=3">3</a>
+    </li>
+    {% endif %} {% if curr_page == 3 %}
+
+    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+    {% else %}
+    <li class="page-item">
+      <a class="page-link" href="/movie_list?page_no={{curr_page + 1}}">
+        Next
+      </a>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+<!-- new pagination -->
+<!-- </div> -->
 <!-- dnf -->
 
 {% endblock %}

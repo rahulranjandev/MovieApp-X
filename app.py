@@ -3,15 +3,16 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask.wrappers import Request
 import mysql.connector
 from mysql.connector.pooling import PooledMySQLConnection
+from config import dbHost, dbuser, dbpasswd, dbport, db
 
 app = Flask(__name__)
 
 mydb = mysql.connector.connect(
-    host="20.228.144.187",
-    user="root",
-    password="Passwd@123r",
-    port=3306,
-    database="movieapp"
+    host=dbHost,
+    user=dbuser,
+    password=dbpasswd,
+    port=dbport,
+    database=db
 )
 
 print(mydb)
