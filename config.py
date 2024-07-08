@@ -3,8 +3,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-dbHost = os.environ.get("host")
-dbuser = os.environ.get("user")
-dbpasswd = os.environ.get("password")
-dbport = os.environ.get("port")
-db = os.environ.get("database")
+dbHost = os.environ.get("dbHost")
+dbuser = os.environ.get("dbuser")
+dbpasswd = os.environ.get("dbpasswd")
+dbport = os.environ.get("dbport")
+db = os.environ.get("db")
